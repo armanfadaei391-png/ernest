@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>برای سایان — از طرف حسین</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Vazirmatn", sans-serif;
+        background: #020d08;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        position: relative;
+        overflow-x: hidden;
+      }
+      .glow {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.15;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .glow-1 {
+        top: -150px;
+        right: -150px;
+        background: #10b981;
+      }
+      .glow-2 {
+        bottom: -150px;
+        left: -150px;
+        background: #059669;
+      }
+      .stars {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .star {
+        position: absolute;
+        background: #a7f3d0;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: twinkle var(--d, 4s) infinite ease-in-out;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.1;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.2);
+        }
+      }
+      .card {
+        position: relative;
+        z-index: 2;
+        max-width: 680px;
+        width: 100%;
+        background: rgba(10, 25, 18, 0.65);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 32px;
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        padding: 48px 40px 36px;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.8),
+          inset 0 0 40px rgba(16, 185, 129, 0.05),
+          0 0 120px rgba(16, 185, 129, 0.1);
+        animation: cardIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .heart-top {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      .heart-top svg {
+        width: 52px;
+        height: 52px;
+        fill: #10b981;
+        filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.8));
+        animation: heartbeat 1.8s ease-in-out infinite;
+      }
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        14% {
+          transform: scale(1.15);
+        }
+        28% {
+          transform: scale(1);
+        }
+        42% {
+          transform: scale(1.12);
+        }
+        56% {
+          transform: scale(1);
+        }
+      }
+      h1 {
+        text-align: center;
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+        font-weight: 700;
+        background: linear-gradient(135deg, #a7f3d0, #10b981, #047857);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 8px;
+      }
+      .subtitle {
+        text-align: center;
+        color: rgba(167, 243, 208, 0.5);
+        font-size: 0.95rem;
+        font-weight: 300;
+        margin-bottom: 32px;
+        letter-spacing: 1px;
+      }
+      .letter {
+        color: #ecfdf5;
+        font-size: 1.05rem;
+        line-height: 2;
+        font-weight: 300;
+      }
+      .letter p {
+        margin-bottom: 18px;
+        opacity: 0;
+        animation: fadeUp 0.9s ease forwards;
+      }
+      .letter p:nth-child(1) {
+        animation-delay: 0.4s;
+      }
+      .letter p:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+      .letter p:nth-child(3) {
+        animation-delay: 1s;
+      }
+      .letter p:nth-child(4) {
+        animation-delay: 1.3s;
+      }
+      .letter p:nth-child(5) {
+        animation-delay: 1.6s;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .letter .highlight {
+        color: #34d399;
+        font-weight: 600;
+      }
+      .letter .name {
+        display: inline-block;
+        color: #10b981;
+        font-weight: 700;
+        position: relative;
+      }
+      .letter .name::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #10b981, transparent);
+        border-radius: 2px;
+      }
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(16, 185, 129, 0.4),
+          transparent
+        );
+        margin: 28px 0 24px;
+        border: none;
+      }
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 8px;
+        opacity: 0;
+        animation: fadeUp 0.9s ease 1.8s forwards;
+      }
+      .btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        background: rgba(16, 185, 129, 0.08);
+        color: #d1fae5;
+        font-family: inherit;
+        font-size: 0.92rem;
+        font-weight: 600;
+        cursor: pointer;
+        overflow: hidden;
+        transition:
+          transform 0.2s ease,
+          background 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .btn:hover {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: rgba(16, 185, 129, 0.7);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+      }
+      .btn:active {
+        transform: translateY(0) scale(0.97);
+      }
+      .btn .icon {
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mx, 50%) var(--my, 50%),
+          rgba(255, 255, 255, 0.15),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      .btn:hover::before {
+        opacity: 1;
+      }
+      .btn.full {
+        grid-column: span 2;
+      }
+      .btn.active {
+        background: rgba(16, 185, 129, 0.3);
+        border-color: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+      }
+      .signature {
+        text-align: left;
+        margin-top: 24px;
+        opacity: 0;
+        animation: fadeUp 0.9s ease 2.2s forwards;
+      }
+      .signature .with-love {
+        color: rgba(167, 243, 208, 0.5);
+        font-size: 0.95rem;
+        font-weight: 300;
+        margin-bottom: 4px;
+      }
+      .signature .name-sign {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a7f3d0, #10b981);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .floating-heart {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1;
+        animation: floatUp 4s ease-out forwards;
+        opacity: 0;
+      }
+      @keyframes floatUp {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5) rotate(0deg);
+        }
+        15% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-120vh) scale(1.2) rotate(20deg);
+        }
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(2, 10, 6, 0.85);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        padding: 20px;
+      }
+      .modal.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-box {
+        max-width: 440px;
+        width: 100%;
+        background: linear-gradient(
+          145deg,
+          rgba(15, 35, 25, 0.97),
+          rgba(5, 15, 10, 0.97)
+        );
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        border-radius: 24px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.9),
+          0 0 60px rgba(16, 185, 129, 0.15);
+        transform: scale(0.9) translateY(20px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modal.open .modal-box {
+        transform: scale(1) translateY(0);
+      }
+      .modal-box .lock {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .modal-box h2 {
+        font-size: 1.3rem;
+        margin-bottom: 14px;
+        color: #34d399;
+        font-weight: 700;
+      }
+      .modal-box p {
+        color: #ecfdf5;
+        line-height: 1.9;
+        font-size: 1rem;
+        font-weight: 300;
+      }
+      .close-btn {
+        margin-top: 24px;
+        padding: 10px 28px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        color: #d1fae5;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: background 0.3s ease;
+      }
+      .close-btn:hover {
+        background: rgba(16, 185, 129, 0.3);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .gallery-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .gallery-img:hover {
+        transform: scale(1.05);
+        box-shadow:
+          0 10px 20px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(16, 185, 129, 0.3);
+      }
+      .game-area {
+        position: relative;
+        height: 260px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px dashed rgba(16, 185, 129, 0.3);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        touch-action: none;
+      }
+      .game-score {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: #d1fae5;
+        margin-bottom: 12px;
+      }
+      .game-score span {
+        color: #10b981;
+        font-weight: 700;
+      }
+      .game-heart {
+        position: absolute;
+        font-size: 26px;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+        user-select: none;
+        animation: gameHeartIn 0.25s ease;
+      }
+      @keyframes gameHeartIn {
+        from {
+          transform: scale(0) rotate(-30deg);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1) rotate(0);
+          opacity: 1;
+        }
+      }
+      @media (max-width: 520px) {
+        .card {
+          padding: 32px 22px 28px;
+          border-radius: 24px;
+        }
+        .buttons {
+          grid-template-columns: 1fr;
+        }
+        .btn.full {
+          grid-column: span 1;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="stars" id="stars"></div>
+
+    <div class="card">
+      <div class="heart-top">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          />
+        </svg>
+      </div>
+
+      <h1>سایان، اینو بخون</h1>
+      <p class="subtitle">— یه چیز کوچیک از طرف حسین —</p>
+
+      <div class="letter">
+        <p>
+          سایان، نمی‌خوام با کلیشه و حرف‌های تکراری شروع کنم. تو این روزا آدم‌ها
+          راحت به هم می‌گن "دوستت دارم"، ولی من دوست داشتم این حرف رو یه جور
+          دیگه، یه جای مخصوص، برات بگم.
+        </p>
+        <p>
+          گاهی به این فکر می‌کنم که چقدر عجیبه که بعضی آدم‌ها از بین این همه
+          شلوغی و تصادف، دقیقاً سر راه هم قرار می‌گیرن. وقتی به
+          <span class="name">تو</span> فکر می‌کنم، می‌بینم اون همه شلوغی و
+          دغدغه، اصلاً به چشم نمیاد.
+        </p>
+        <p>
+          راستش رو بخوای، من توی بیان احساسات خیلی ماهر نیستم. ولی وقتی باهام
+          حرف می‌زنی، وقتی می‌خندی، یا حتی وقتی فقط ساکتی، حس می‌کنم یه آرامش
+          عجیبی دارم. یه آرامشی که هیچ جای دیگه پیداش نمی‌کنم.
+        </p>
+        <p>
+          این سایتی که داری می‌بینی، شاید فقط چند خط کد باشه، ولی پشت هر خطش،
+          کلی فکر به <span class="highlight">تو</span> بوده. خواستم یه گوشه‌ای
+          باشه که هر وقت دلت گرفت یا خواستی یادت بیاد یه نفر هست که براش مهمی،
+          بیای اینجا.
+        </p>
+        <p>
+          نمی‌خوام این حرفا سنگینت کنه. فقط خواستم بدونی که بودنت، حتی از پشت
+          این صفحه‌ی گوشی، برام یه نعمت بزرگه. مراقب خودت باش.
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="buttons">
+        <button
+          class="btn"
+          id="btnAudioUpload"
+          onclick="document.getElementById('audioUpload').click()"
+        >
+          <span class="icon">🎵</span> انتخاب آهنگ داریوش
+        </button>
+        <input
+          type="file"
+          id="audioUpload"
+          accept="audio/*"
+          style="display: none"
+          onchange="handleAudioUpload(event)"
+        />
+
+        <button
+          class="btn"
+          id="btnImageUpload"
+          onclick="document.getElementById('imageUpload').click()"
+        >
+          <span class="icon">📸</span> انتخاب عکس‌ها
+        </button>
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          multiple
+          style="display: none"
+          onchange="handleImageUpload(event)"
+        />
+
+        <button
+          class="btn full"
+          style="background: rgba(16, 185, 129, 0.4); border-color: #10b981"
+          id="btnDownload"
+        >
+          💾 ذخیره نهایی سایت (برای فرستادن به سایان)
+        </button>
+
+        <button class="btn" id="btnSecret">
+          <span class="icon">🔒</span> پیام مخفی
+        </button>
+        <button class="btn" id="btnGame">
+          <span class="icon">🎮</span> بازی قلب
+        </button>
+      </div>
+
+      <div class="signature">
+        <div class="with-love">با عشق، از طرف</div>
+        <div class="name-sign">حسین</div>
+      </div>
+    </div>
+
+    <div class="modal" id="secretModal">
+      <div class="modal-box">
+        <span class="lock">🔓</span>
+        <h2>فقط بین من و تو</h2>
+        <p>
+          سایان، راستش رو بخوای، همیشه یه سری حرفا رو توی دلم نگه می‌دارم چون
+          نمی‌دونم چطوری بگم که خرابش نکنم. ولی حالا که اینجایی، می‌خوام بدونی
+          که از وقتی اومدی، خیلی چیزا برام رنگی‌تر شده.<br /><br />شاید نتونم هر
+          روز اینا رو بهت بگم، ولی همیشه یادت باشه که یکی هست که با فکر کردن به
+          تو، روزش قشنگ‌تر می‌شه. مراقب خودت باش، بیشتر از هر کسی.
+        </p>
+        <button
+          class="close-btn"
+          onclick="
+            document.getElementById('secretModal').classList.remove('open')
+          "
+        >
+          بستن
+        </button>
+      </div>
+    </div>
+
+    <div class="modal" id="galleryModal">
+      <div class="modal-box">
+        <h2>عکس‌های ما</h2>
+        <div class="gallery-grid" id="galleryContainer"></div>
+        <button
+          class="close-btn"
+          onclick="
+            document.getElementById('galleryModal').classList.remove('open')
+          "
+        >
+          بستن
+        </button>
+      </div>
+    </div>
+
+    <div class="modal" id="gameModal">
+      <div class="modal-box">
+        <h2>قلب بگیر برای سایان</h2>
+        <p
+          style="
+            font-size: 0.85rem;
+            color: rgba(167, 243, 208, 0.6);
+            margin-bottom: 18px;
+          "
+        >
+          هر قلبی که می‌گیری، یه دونه به عشق اضافه می‌شه
+        </p>
+        <div class="game-score">
+          <div>امتیاز: <span id="gameScore">0</span></div>
+          <div>زمان: <span id="gameTime">20</span>ث</div>
+        </div>
+        <div class="game-area" id="gameArea"></div>
+        <button class="close-btn" onclick="closeGame()">بستن بازی</button>
+      </div>
+    </div>
+
+    <audio id="mySong" loop></audio>
+
+    <script>
+      // متغیرهایی که عکس و آهنگ رو نگه می‌دارن
+      var currentAudioBase64 = null;
+      var currentImagesBase64 = [];
+
+      (function createStars() {
+        var container = document.getElementById("stars");
+        for (var i = 0; i < 80; i++) {
+          var star = document.createElement("div");
+          star.className = "star";
+          var size = Math.random() * 2.5 + 0.5;
+          star.style.width = size + "px";
+          star.style.height = size + "px";
+          star.style.left = Math.random() * 100 + "%";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.setProperty("--d", Math.random() * 4 + 2 + "s");
+          star.style.animationDelay = Math.random() * 4 + "s";
+          container.appendChild(star);
+        }
+      })();
+
+      document.querySelectorAll(".btn").forEach(function (btn) {
+        btn.addEventListener("mousemove", function (e) {
+          var rect = btn.getBoundingClientRect();
+          btn.style.setProperty(
+            "--mx",
+            ((e.clientX - rect.left) / rect.width) * 100 + "%",
+          );
+          btn.style.setProperty(
+            "--my",
+            ((e.clientY - rect.top) / rect.height) * 100 + "%",
+          );
+        });
+      });
+
+      function spawnHeart(x, y, opts) {
+        opts = opts || {};
+        var heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.textContent = opts.emoji || "💚";
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        heart.style.color = opts.color || "#10b981";
+        heart.style.fontSize = (opts.size || 16 + Math.random() * 20) + "px";
+        heart.style.animationDuration =
+          (opts.dur || 3.5 + Math.random() * 1.5) + "s";
+        document.body.appendChild(heart);
+        setTimeout(function () {
+          heart.remove();
+        }, 5500);
+      }
+
+      // تبدیل فایل به Base64
+      function getBase64(file) {
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = function () {
+            resolve(reader.result);
+          };
+          reader.onerror = function (error) {
+            reject(error);
+          };
+        });
+      }
+
+      // انتخاب آهنگ
+      var mySong = document.getElementById("mySong");
+      async function handleAudioUpload(event) {
+        var file = event.target.files[0];
+        if (file) {
+          var base64 = await getBase64(file);
+          currentAudioBase64 = base64;
+          mySong.src = base64;
+          mySong.play();
+          document.getElementById("btnAudioUpload").innerHTML =
+            '<span class="icon">⏸</span> آهنگ انتخاب شد (پخش/قطع)';
+          document.getElementById("btnAudioUpload").onclick = function () {
+            if (mySong.paused) {
+              mySong.play();
+              this.innerHTML =
+                '<span class="icon">⏸</span> آهنگ انتخاب شد (پخش/قطع)';
+            } else {
+              mySong.pause();
+              this.innerHTML =
+                '<span class="icon">▶️</span> آهنگ انتخاب شد (پخش/قطع)';
+            }
+          };
+        }
+      }
+
+      // انتخاب عکس‌ها
+      async function handleImageUpload(event) {
+        var files = event.target.files;
+        if (files.length > 0) {
+          var galleryContainer = document.getElementById("galleryContainer");
+          galleryContainer.innerHTML = "";
+          currentImagesBase64 = [];
+          for (var i = 0; i < files.length; i++) {
+            var base64 = await getBase64(files[i]);
+            currentImagesBase64.push(base64);
+            var img = document.createElement("img");
+            img.src = base64;
+            img.className = "gallery-img";
+            galleryContainer.appendChild(img);
+          }
+          document.getElementById("btnImageUpload").innerHTML =
+            '<span class="icon">✅</span> عکس‌ها انتخاب شدند';
+          document.getElementById("galleryModal").classList.add("open");
+        }
+      }
+
+      // ساخت فایل نهایی HTML
+      document
+        .getElementById("btnDownload")
+        .addEventListener("click", function () {
+          if (!currentAudioBase64 && currentImagesBase64.length === 0) {
+            alert("اول عکس‌ها و آهنگ رو انتخاب کن، بعد دکمه ذخیره رو بزن!");
+            return;
+          }
+
+          // گرفتن کل کد HTML فعلی
+          var htmlContent = document.documentElement.outerHTML;
+
+          // جایگزینی لینک آهنگ
+          if (currentAudioBase64) {
+            htmlContent = htmlContent.replace(
+              "var currentAudioBase64 = null;",
+              'var currentAudioBase64 = "' + currentAudioBase64 + '";',
+            );
+            htmlContent = htmlContent.replace(
+              '<audio id="mySong" loop></audio>',
+              '<audio id="mySong" src="' +
+                currentAudioBase64 +
+                '" loop></audio>',
+            );
+          }
+
+          // جایگزینی عکس‌ها
+          if (currentImagesBase64.length > 0) {
+            var imagesString = JSON.stringify(currentImagesBase64);
+            htmlContent = htmlContent.replace(
+              "var currentImagesBase64 = [];",
+              "var currentImagesBase64 = " + imagesString + ";",
+            );
+
+            var imgsHTML = "";
+            for (var i = 0; i < currentImagesBase64.length; i++) {
+              imgsHTML +=
+                '<img src="' +
+                currentImagesBase64[i] +
+                '" class="gallery-img">';
+            }
+            htmlContent = htmlContent.replace(
+              '<div class="gallery-grid" id="galleryContainer"></div>',
+              '<div class="gallery-grid" id="galleryContainer">' +
+                imgsHTML +
+                "</div>",
+            );
+            htmlContent = htmlContent.replace(
+              '<button class="btn" id="btnImageUpload" onclick="document.getElementById(\'imageUpload\').click()"><span class="icon">📸</span> انتخاب عکس‌ها</button>',
+              '<button class="btn" id="btnImageUpload"><span class="icon">✅</span> عکس‌ها انتخاب شدند</button>',
+            );
+          }
+
+          // ساخت و دانلود فایل
+          var blob = new Blob([htmlContent], { type: "text/html" });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = "sayan_final.html";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          alert(
+            "فایل نهایی ساخته شد! فایل 'sayan_final.html' رو دانلود کن و برای سایان بفرست.",
+          );
+        });
+
+      // مودال‌ها و بازی
+      document
+        .getElementById("btnSecret")
+        .addEventListener("click", function () {
+          document.getElementById("secretModal").classList.add("open");
+        });
+
+      var gameArea = document.getElementById("gameArea");
+      var gameScoreEl = document.getElementById("gameScore");
+      var gameTimeEl = document.getElementById("gameTime");
+      var gameScore = 0;
+      var gameTime = 20;
+      var gameTimer = null;
+      var gameSpawner = null;
+      var gameActive = false;
+
+      function spawnGameHeart() {
+        if (!gameActive) return;
+        var heart = document.createElement("div");
+        heart.className = "game-heart";
+        var emojis = ["💚", "💚", "🤍", "✨"];
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left =
+          10 + Math.random() * (gameArea.clientWidth - 50) + "px";
+        heart.style.top =
+          10 + Math.random() * (gameArea.clientHeight - 50) + "px";
+        heart.addEventListener("click", function () {
+          if (!gameActive) return;
+          gameScore++;
+          gameScoreEl.textContent = gameScore;
+          heart.style.transform = "scale(1.8)";
+          heart.style.opacity = "0";
+          var r = heart.getBoundingClientRect();
+          spawnHeart(r.left + 10, r.top + 10, {
+            emoji: "✨",
+            size: 20,
+            dur: 1.5,
+          });
+          setTimeout(function () {
+            if (heart.parentNode) heart.remove();
+          }, 200);
+        });
+        gameArea.appendChild(heart);
+        setTimeout(function () {
+          if (heart.parentNode) heart.remove();
+        }, 2000);
+      }
+
+      function startGame() {
+        gameScore = 0;
+        gameTime = 20;
+        gameScoreEl.textContent = "0";
+        gameTimeEl.textContent = "20";
+        gameArea.innerHTML = "";
+        gameActive = true;
+        spawnGameHeart();
+        gameSpawner = setInterval(spawnGameHeart, 600);
+        gameTimer = setInterval(function () {
+          if (!gameActive) return;
+          gameTime--;
+          gameTimeEl.textContent = gameTime;
+          if (gameTime <= 0) {
+            gameActive = false;
+            clearInterval(gameTimer);
+            clearInterval(gameSpawner);
+            gameArea.innerHTML =
+              '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#10b981;font-weight:700;">پایان بازی! امتیاز: ' +
+              gameScore +
+              "</div>";
+          }
+        }, 1000);
+      }
+
+      document.getElementById("btnGame").addEventListener("click", function () {
+        document.getElementById("gameModal").classList.add("open");
+        setTimeout(startGame, 300);
+      });
+
+      function closeGame() {
+        gameActive = false;
+        if (gameTimer) clearInterval(gameTimer);
+        if (gameSpawner) clearInterval(gameSpawner);
+        document.getElementById("gameModal").classList.remove("open");
+      }
+    </script>
+  </body>
+</html>
